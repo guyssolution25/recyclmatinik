@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recycl'Matinik</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;color:#14351d;background:#fff}
+header{padding:14px 18px;border-bottom:1px solid #d9e9dc;display:flex;justify-content:space-between;position:sticky;top:0;background:#fff}
+.brand{font-weight:900;color:#08752D;font-size:21px}.hero{padding:38px 18px;background:linear-gradient(135deg,#ecf9ef,#eef7ff)}
+h1{font-size:38px;margin:0 0 12px;color:#0c4a1c}.lead{color:#63786a;line-height:1.5}
+main{max-width:1100px;margin:auto;padding:20px 16px 70px}.filters{display:grid;gap:10px;border:1px solid #d9e9dc;border-radius:18px;padding:14px}
+input,select,button{padding:13px;border-radius:12px;border:1px solid #cfe2d2;font-size:16px}button{background:#08752D;color:#fff;font-weight:800;border:0}
+.grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}.card{border:1px solid #d9e9dc;border-radius:18px;padding:16px}
+.card h3{margin-top:0}.badge{display:inline-block;background:#e7f5ea;color:#08752D;padding:5px 8px;border-radius:999px;font-size:12px;font-weight:800;margin:2px}
+.meta{margin:14px 0;color:#63786a}.help{padding:14px;border-radius:14px;background:#f4faf5;color:#63786a}
+a.btn{display:inline-block;padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:800;margin-right:7px}.primary{background:#08752D;color:white}.secondary{border:1px solid #08752D;color:#08752D}
+@media(min-width:800px){.filters{grid-template-columns:2fr 1fr 1fr auto}.grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header><div class="brand">♻ Recycl'Matinik</div><div id="status">Connexion…</div></header>
+<section class="hero"><h1>Le bon acteur pour le bon déchet.</h1><p class="lead">Recherche dans la base Recycl'Matinik par matière, commune et public.</p></section>
+<main>
+<div class="filters">
+<input id="q" placeholder="Ex. biodéchets, huile, DEEE, carton…">
+<select id="commune"><option value="">Toutes les communes</option></select>
+<select id="public"><option value="">Tous les publics</option><option>Particuliers</option><option>Professionnels</option><option>Particuliers + Professionnels</option></select>
+<button onclick="render()">Rechercher</button>
+</div>
+<div id="meta" class="meta"></div>
+<div id="results" class="grid"></div>
+<div id="help" class="help" style="display:none"></div>
+</main>
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbwU_HOvv2dug9RUCgDR0YEIcThel0ej6_1jXADr4eiuNO6u8wewUtBMZ7FUdj7tDe3r/exec";
+let actors=[];
+const norm=s=>(s||"").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+async function loadData(){
+ const st=document.getElementById("status");
+ if(API_URL.includes("COLLER_ICI")){
+   st.textContent="API à activer";
+   const h=document.getElementById("help");
+   h.style.display="block";
+   h.innerHTML="<strong>Site prêt.</strong> Colle simplement l'URL Apps Script /exec à la place de https://script.google.com/macros/s/AKfycbwU_HOvv2dug9RUCgDR0YEIcThel0ej6_1jXADr4eiuNO6u8wewUtBMZ7FUdj7tDe3r/exec.";
+   return;
+ }
+ try{
+   const r=await fetch(API_URL,{cache:"no-store"});
+   const payload=await r.json();
+   actors=(Array.isArray(payload)?payload:(payload.data||[])).filter(a=>(a["Fiche publiable"]||"").toUpperCase()==="OUI");
+   st.textContent=actors.length+" fiches actives";
+   const communes=[...new Set(actors.map(a=>a["Commune normalisée"]||a["Commune"]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"fr"));
+   const sel=document.getElementById("commune");
+   communes.forEach(c=>{const o=document.createElement("option");o.value=c;o.textContent=c;sel.appendChild(o)});
+   render();
+ }catch(e){st.textContent="Erreur";document.getElementById("results").innerHTML='<div class="help">Impossible de charger la base.</div>'}
+}
+function matchPublic(a,p){
+ if(!p)return true;
+ const v=norm(a["Public normalisé"]||a["Public / accès"]);
+ if(p==="Particuliers")return v.includes("particulier")||v.includes("grand public");
+ if(p==="Professionnels")return v.includes("profession");
+ return v.includes("particulier")&&v.includes("profession");
+}
+function render(){
+ const q=norm(document.getElementById("q").value);
+ const c=document.getElementById("commune").value;
+ const p=document.getElementById("public").value;
+ const rows=actors.filter(a=>{
+   const search=norm(a["Recherche texte"]||Object.values(a).join(" "));
+   const commune=a["Commune normalisée"]||a["Commune"]||"";
+   return (!q||search.includes(q))&&(!c||commune===c||commune==="Toute la Martinique")&&matchPublic(a,p);
+ });
+ document.getElementById("meta").textContent=rows.length+" solution(s) trouvée(s)";
+ document.getElementById("results").innerHTML=rows.map(a=>`<div class="card">
+ <h3>${a["Nom de la structure"]||""}</h3>
+ <span class="badge">${a["Catégorie normalisée"]||a["Type d'acteur"]||""}</span>
+ <span class="badge">${a["Commune normalisée"]||a["Commune"]||""}</span>
+ <p><strong>Activité :</strong> ${a["Activité / rôle"]||""}</p>
+ <p><strong>Déchets :</strong> ${a["Déchets / matières"]||""}</p>
+ ${a["Téléphone"]?`<a class="btn primary" href="tel:${a["Téléphone"].replace(/[^\d+]/g,"")}">Appeler</a>`:""}
+ ${a["Site web"]?`<a class="btn secondary" target="_blank" href="${a["Site web"]}">Site web</a>`:""}
+ </div>`).join("")||'<div class="help">Aucun résultat.</div>';
+}
+["q","commune","public"].forEach(id=>document.getElementById(id).addEventListener(id==="q"?"input":"change",render));
+loadData();
+</script>
+</body>
+</html>

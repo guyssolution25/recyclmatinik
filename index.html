@@ -93,7 +93,32 @@ function render(){
  </div>`).join("")||'<div class="help">Aucun résultat.</div>';
 }
 ["q","commune","public"].forEach(id=>document.getElementById(id).addEventListener(id==="q"?"input":"change",render));
-loadData();
+function trackEvent(name, params) {
+  if (typeof gtag === "function") {
+    gtag("event", name, params || {});
+  }
+}
+
+document.getElementById("q").addEventListener("change", function() {
+  var valeur = this.value.trim();
+
+  if (valeur !== "") {
+    trackEvent("recherche_dechet", {
+      terme_recherche: valeur
+    });
+  }
+});
+
+document.getElementById("commune").addEventListener("change", function() {
+  var valeur = this.value;
+
+  if (valeur !== "") {
+    trackEvent("filtre_commune", {
+      commune: valeur
+    });
+  }
+});
+  loadData();
 </script>
 </body>
 </html>

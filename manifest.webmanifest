@@ -1,0 +1,23 @@
+{
+  "name": "Recycl'Matinik",
+  "short_name": "Recycl'Matinik",
+  "description": "La plateforme martiniquaise de mise en relation des acteurs de l'économie circulaire.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#08752D",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

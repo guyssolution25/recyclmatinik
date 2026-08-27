@@ -42,7 +42,67 @@ a.btn{display:inline-block;padding:10px 12px;border-radius:10px;text-decoration:
     📲 Installer Recycl'Matinik
   </button>
 </div>
-<main>
+<main><section id="collecte" style="margin-bottom:20px;padding:18px;border:1px solid #d9e9dc;border-radius:18px;background:#f4faf5;">
+  <h2 style="margin-top:0;color:#0c4a1c;">🚛 Commander une collecte</h2>
+
+  <p style="color:#63786a;">
+    Besoin d'une collecte ? Remplis la demande ci-dessous.
+  </p>
+
+  <form id="collecteForm">
+    <select id="typeDechetCollecte" required>
+      <option value="">Type de déchet</option>
+      <option>Biodéchets</option>
+      <option>Déchets verts</option>
+      <option>Cartons</option>
+      <option>Emballages</option>
+      <option>Encombrants</option>
+      <option>Autre</option>
+    </select>
+
+    <select id="communeCollecte" required>
+      <option value="">Commune</option>
+      <option>Rivière-Salée</option>
+      <option>Sainte-Luce</option>
+      <option>Le Marin</option>
+      <option>Sainte-Anne</option>
+      <option>Le Diamant</option>
+      <option>Les Trois-Îlets</option>
+      <option>Le Vauclin</option>
+      <option>Le François</option>
+      <option>Le Lamentin</option>
+      <option>Fort-de-France</option>
+      <option>Autre</option>
+    </select>
+
+    <input id="quantiteCollecte" type="text" placeholder="Quantité approximative">
+
+    <select id="profilCollecte" required>
+      <option value="">Votre profil</option>
+      <option>Particulier</option>
+      <option>Professionnel</option>
+      <option>Association</option>
+      <option>Collectivité</option>
+    </select>
+
+    <input id="nomCollecte" type="text" placeholder="Nom / Structure" required>
+
+    <input id="telephoneCollecte" type="tel" placeholder="Téléphone" required>
+
+    <input id="emailCollecte" type="email" placeholder="E-mail">
+
+    <textarea id="messageCollecte" placeholder="Précisions sur la collecte"
+      style="width:100%;box-sizing:border-box;padding:13px;border-radius:12px;border:1px solid #cfe2d2;font-size:16px;min-height:90px;margin-bottom:10px;"></textarea>
+
+    <button type="submit">
+      Envoyer ma demande de collecte
+    </button>
+  </form>
+
+  <p style="font-size:13px;color:#63786a;margin-bottom:0;">
+    Première expérimentation avec les partenaires de Recycl'Matinik.
+  </p>
+</section>
 <div class="filters">
 <input id="q" placeholder="Ex. biodéchets, huile, DEEE, carton…">
 <select id="commune"><option value="">Toutes les communes</option></select>

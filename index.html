@@ -223,6 +223,43 @@ document.getElementById("installApp").addEventListener("click", async () => {
   }
 
 });
+    document.getElementById("collecteForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const typeDechet = document.getElementById("typeDechetCollecte").value;
+  const commune = document.getElementById("communeCollecte").value;
+  const quantite = document.getElementById("quantiteCollecte").value;
+  const profil = document.getElementById("profilCollecte").value;
+  const nom = document.getElementById("nomCollecte").value;
+  const telephone = document.getElementById("telephoneCollecte").value;
+  const email = document.getElementById("emailCollecte").value;
+  const message = document.getElementById("messageCollecte").value;
+
+  const sujet = "Demande de collecte - Recycl'Matinik";
+
+  const corps =
+`Nouvelle demande de collecte via Recycl'Matinik
+
+Type de déchet : ${typeDechet}
+Commune : ${commune}
+Quantité approximative : ${quantite}
+Profil : ${profil}
+Nom / Structure : ${nom}
+Téléphone : ${telephone}
+E-mail : ${email}
+
+Précisions :
+${message}
+
+Demande transmise via Recycl'Matinik.`;
+
+  const mailto =
+    "mailto:guysgreen.25@gmail.com"
+    + "?subject=" + encodeURIComponent(sujet)
+    + "&body=" + encodeURIComponent(corps);
+
+  window.location.href = mailto;
+});
   </script>
 </body>
 </html>

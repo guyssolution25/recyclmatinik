@@ -258,7 +258,13 @@ Demande transmise via Recycl'Matinik.`;
     + "?subject=" + encodeURIComponent(sujet)
     + "&body=" + encodeURIComponent(corps);
 
-  window.location.href = mailto;
+ trackEvent("collecte_envoyee", {
+  type_dechet: typeDechet,
+  commune: commune,
+  profil: profil,
+  partenaire: "Guys Green"
+});
+     window.location.href = mailto;
 });
   </script>
 </body>

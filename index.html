@@ -1,271 +1,1080 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JYELJLKE7X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-JYELJLKE7X');
-</script>
- <meta charset="utf-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Recycl'Matinik</title>
-  <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#08752D">
+<meta name="description" content="Recycl'Matinik - Le bon acteur pour le bon déchet en Martinique.">
 
+<title>Recycl'Matinik</title>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#075EA8">
 <link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Recycl'Matinik">
+
 <style>
-body{margin:0;font-family:Arial,sans-serif;color:#14351d;background:#fff}
-header{padding:14px 18px;border-bottom:1px solid #d9e9dc;display:flex;justify-content:space-between;position:sticky;top:0;background:#fff}
-.brand{font-weight:900;color:#08752D;font-size:21px}.hero{padding:38px 18px;background:linear-gradient(135deg,#ecf9ef,#eef7ff)}
-h1{font-size:38px;margin:0 0 12px;color:#0c4a1c}.lead{color:#63786a;line-height:1.5}
-main{max-width:1100px;margin:auto;padding:20px 16px 70px}.filters{display:grid;gap:10px;border:1px solid #d9e9dc;border-radius:18px;padding:14px}
-input,select,button{padding:13px;border-radius:12px;border:1px solid #cfe2d2;font-size:16px}button{background:#08752D;color:#fff;font-weight:800;border:0}
-.grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}.card{border:1px solid #d9e9dc;border-radius:18px;padding:16px}
-.card h3{margin-top:0}.badge{display:inline-block;background:#e7f5ea;color:#08752D;padding:5px 8px;border-radius:999px;font-size:12px;font-weight:800;margin:2px}
-.meta{margin:14px 0;color:#63786a}.help{padding:14px;border-radius:14px;background:#f4faf5;color:#63786a}
-a.btn{display:inline-block;padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:800;margin-right:7px}.primary{background:#08752D;color:white}.secondary{border:1px solid #08752D;color:#08752D}
-@media(min-width:800px){.filters{grid-template-columns:2fr 1fr 1fr auto}.grid{grid-template-columns:repeat(3,1fr)}}
+:root{
+ --bleu:#075EA8;
+ --vert:#138A52;
+ --clair:#EAF5FC;
+ --texte:#173042;
+}
+
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ color:var(--texte);
+ background:white;
+}
+
+header{
+ padding:15px;
+ text-align:center;
+ border-bottom:1px solid #ddd;
+}
+
+.logo{
+ font-size:25px;
+ font-weight:bold;
+}
+
+.recycl{color:var(--bleu)}
+.matinik{color:var(--vert)}
+
+.hero{
+ padding:45px 20px;
+ text-align:center;
+ background:linear-gradient(135deg,#EAF5FC,#ECF8F1);
+}
+
+.hero h1{
+ color:var(--bleu);
+ font-size:38px;
+ margin-bottom:10px;
+}
+
+.hero p{
+ font-size:18px;
+}
+
+.btn{
+ display:inline-block;
+ padding:13px 18px;
+ margin:6px;
+ border-radius:10px;
+ text-decoration:none;
+ border:0;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+.bleu{
+ background:var(--bleu);
+ color:white;
+}
+
+.vert{
+ background:var(--vert);
+ color:white;
+}
+
+main{
+ max-width:1000px;
+ margin:auto;
+ padding:20px;
+}
+
+section{
+ margin:25px 0;
+ padding:20px;
+ border:1px solid #ddd;
+ border-radius:16px;
+}
+
+h2{color:var(--bleu)}
+
+input,select,textarea{
+ width:100%;
+ padding:13px;
+ margin:6px 0;
+ border:1px solid #ccc;
+ border-radius:9px;
+ font-size:16px;
+}
+
+textarea{min-height:90px}
+
+.grid{
+ display:grid;
+ gap:12px;
+}
+
+.card{
+ border:1px solid #ddd;
+ padding:15px;
+ border-radius:14px;
+}
+
+.card h3{
+ color:var(--bleu);
+}
+
+.badge{
+ background:#ECF8F1;
+ color:#0C633B;
+ padding:5px 8px;
+ border-radius:20px;
+ font-size:12px;
+}
+
+.warning{
+ background:#FFF8E8;
+ padding:13px;
+ border-radius:10px;
+ margin:12px 0;
+}
+
+footer{
+ background:#F5F9FB;
+ padding:25px 20px 100px;
+ text-align:center;
+}
+
+footer button{
+ background:none;
+ border:0;
+ color:var(--bleu);
+ text-decoration:underline;
+ margin:5px;
+}
+
+.cookie{
+ display:none;
+ position:fixed;
+ bottom:15px;
+ left:15px;
+ right:15px;
+ max-width:750px;
+ margin:auto;
+ background:white;
+ border:1px solid #ccc;
+ border-radius:15px;
+ padding:18px;
+ box-shadow:0 5px 30px #777;
+ z-index:100;
+}
+
+.cookie-actions{
+ display:flex;
+ gap:10px;
+}
+
+.cookie-actions button{
+ flex:1;
+ padding:12px;
+ border-radius:9px;
+ border:1px solid var(--bleu);
+ font-weight:bold;
+}
+
+.modal-bg{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:#0008;
+ z-index:200;
+ padding:20px;
+}
+
+.modal{
+ background:white;
+ max-width:750px;
+ max-height:85vh;
+ overflow:auto;
+ margin:auto;
+ padding:22px;
+ border-radius:15px;
+}
+
+@media(min-width:750px){
+ .grid{grid-template-columns:repeat(3,1fr)}
+}
 </style>
 </head>
+
 <body>
-<header><div class="brand">♻ Recycl'Matinik</div><div id="status">Connexion…</div></header>
-<section class="hero"><h1>Le bon acteur pour le bon déchet.</h1><p class="lead">Recherche dans la base Recycl'Matinik par matière, commune et public.</p></section>
-  <div style="text-align:center; padding:16px;">
-  <button id="installApp" style="background:#08752D;color:white;border:0;border-radius:12px;padding:14px 20px;font-size:16px;font-weight:bold;cursor:pointer;">
-    📲 Installer Recycl'Matinik
-  </button>
+
+<header>
+ <div class="logo">
+ ♻️
+ <span class="recycl">RECYCL’</span><span class="matinik">MATINIK</span>
+ </div>
+</header>
+
+<div class="hero">
+
+<h1>Le bon acteur pour le bon déchet</h1>
+
+<p>
+Trouvez une solution pour donner une seconde vie
+à vos déchets en Martinique.
+</p>
+
+<a href="#recherche" class="btn bleu">
+🔎 Trouver une solution
+</a>
+
+<a href="#collecte" class="btn vert">
+🚛 Demander une collecte
+</a>
+
 </div>
-<main><section id="collecte" style="margin-bottom:20px;padding:18px;border:1px solid #d9e9dc;border-radius:18px;background:#f4faf5;">
-  <h2 style="margin-top:0;color:#0c4a1c;">🚛 Commander une collecte</h2>
 
-  <p style="color:#63786a;">
-    Besoin d'une collecte ? Remplis la demande ci-dessous.
-  </p>
+<main>
 
-  <form id="collecteForm">
-    <select id="typeDechetCollecte" required>
-      <option value="">Type de déchet</option>
-      <option>Biodéchets</option>
-      <option>Déchets verts</option>
-      <option>Cartons</option>
-      <option>Emballages</option>
-      <option>Encombrants</option>
-      <option>Autre</option>
-    </select>
+<section id="recherche">
 
-    <select id="communeCollecte" required>
-      <option value="">Commune</option>
-      <option>Rivière-Salée</option>
-      <option>Sainte-Luce</option>
-      <option>Le Marin</option>
-      <option>Sainte-Anne</option>
-      <option>Le Diamant</option>
-      <option>Les Trois-Îlets</option>
-      <option>Le Vauclin</option>
-      <option>Le François</option>
-      <option>Le Lamentin</option>
-      <option>Fort-de-France</option>
-      <option>Autre</option>
-    </select>
+<h2>♻️ Trouver un acteur</h2>
 
-    <input id="quantiteCollecte" type="text" placeholder="Quantité approximative">
+<input id="q"
+placeholder="Ex : biodéchets, carton, huile, DEEE…">
 
-    <select id="profilCollecte" required>
-      <option value="">Votre profil</option>
-      <option>Particulier</option>
-      <option>Professionnel</option>
-      <option>Association</option>
-      <option>Collectivité</option>
-    </select>
+<select id="commune">
+<option value="">Toutes les communes</option>
+</select>
 
-    <input id="nomCollecte" type="text" placeholder="Nom / Structure" required>
+<select id="public">
+<option value="">Tous les publics</option>
+<option>Particuliers</option>
+<option>Professionnels</option>
+<option>Particuliers + Professionnels</option>
+</select>
 
-    <input id="telephoneCollecte" type="tel" placeholder="Téléphone" required>
+<button class="btn bleu" onclick="render()">
+Rechercher
+</button>
 
-    <input id="emailCollecte" type="email" placeholder="E-mail">
+<p id="meta"></p>
 
-    <textarea id="messageCollecte" placeholder="Précisions sur la collecte"
-      style="width:100%;box-sizing:border-box;padding:13px;border-radius:12px;border:1px solid #cfe2d2;font-size:16px;min-height:90px;margin-bottom:10px;"></textarea>
-
-    <button type="submit">
-      Envoyer ma demande de collecte
-    </button>
-  </form>
-
-  <p style="font-size:13px;color:#63786a;margin-bottom:0;">
-    Première expérimentation avec les partenaires de Recycl'Matinik.
-  </p>
-</section>
-<div class="filters">
-<input id="q" placeholder="Ex. biodéchets, huile, DEEE, carton…">
-<select id="commune"><option value="">Toutes les communes</option></select>
-<select id="public"><option value="">Tous les publics</option><option>Particuliers</option><option>Professionnels</option><option>Particuliers + Professionnels</option></select>
-<button onclick="render()">Rechercher</button>
-</div>
-<div id="meta" class="meta"></div>
 <div id="results" class="grid"></div>
-<div id="help" class="help" style="display:none"></div>
+
+</section>
+
+
+<section id="collecte">
+
+<h2>🚛 Demander une collecte</h2>
+
+<p>
+Décrivez votre besoin. Recycl’Matinik vous aide à
+transmettre votre demande à un partenaire adapté.
+</p>
+
+<div class="warning">
+
+<strong>Important :</strong>
+
+Une demande ne vaut pas confirmation de collecte.
+
+Le partenaire vous recontactera pour confirmer
+la faisabilité, la date et les modalités.
+
+</div>
+
+<form id="collecteForm">
+
+<select id="dechet" required>
+<option value="">Type de déchet *</option>
+<option>Biodéchets</option>
+<option>Déchets verts</option>
+<option>Cartons</option>
+<option>Emballages</option>
+<option>Encombrants</option>
+<option>Autre</option>
+</select>
+
+<input id="ville"
+placeholder="Commune *"
+required>
+
+<input id="quantite"
+placeholder="Quantité approximative">
+
+<select id="profil" required>
+<option value="">Votre profil *</option>
+<option>Particulier</option>
+<option>Professionnel</option>
+<option>Association</option>
+<option>Collectivité</option>
+</select>
+
+<input id="nom"
+placeholder="Nom / Structure *"
+required>
+
+<input id="telephone"
+type="tel"
+placeholder="Téléphone *"
+required>
+
+<input id="email"
+type="email"
+placeholder="E-mail">
+
+<textarea id="message"
+placeholder="Précisions sur la collecte"></textarea>
+
+<label>
+<input type="checkbox"
+id="rgpd"
+style="width:auto"
+required>
+
+J’accepte que mes informations soient utilisées
+pour traiter ma demande.
+</label>
+
+<br><br>
+
+<button class="btn vert">
+✉️ Préparer ma demande
+</button>
+
+</form>
+
+</section>
+
 </main>
+
+
+<footer>
+
+<strong>
+<span class="recycl">RECYCL’</span><span class="matinik">MATINIK</span>
+</strong>
+
+<p>Le bon acteur pour le bon déchet</p>
+
+<p>
+Solution portée par <strong>Guy’s Solution</strong>
+</p>
+
+<p>
+146 chemin La Mauny<br>
+Quartier Sans Pareil<br>
+97215 Rivière-Salée
+</p>
+
+<p>
+Audrey.goldery.culture3@gmail.com
+</p>
+
+<button onclick="legal()">
+Mentions légales
+</button>
+
+<button onclick="privacy()">
+Confidentialité / RGPD
+</button>
+
+<button onclick="cookies()">
+Gérer mes cookies
+</button>
+
+</footer>
+
+
+<div id="cookie" class="cookie">
+
+<strong>Vos choix de confidentialité</strong>
+
+<p>
+Recycl’Matinik utilise Google Analytics uniquement
+avec votre accord pour mesurer l’audience.
+Vous pouvez accepter ou refuser.
+</p>
+
+<div class="cookie-actions">
+
+<button onclick="refuseCookies()">
+Tout refuser
+</button>
+
+<button
+onclick="acceptCookies()"
+style="background:#075EA8;color:white">
+Tout accepter
+</button>
+
+</div>
+
+</div>
+
+
+<div id="modalBg"
+class="modal-bg"
+onclick="closeModal(event)">
+
+<div class="modal">
+
+<button
+onclick="document.getElementById('modalBg').style.display='none'">
+Fermer ✕
+</button>
+
+<div id="modalContent"></div>
+
+</div>
+</div>
+
+
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbwU_HOvv2dug9RUCgDR0YEIcThel0ej6_1jXADr4eiuNO6u8wewUtBMZ7FUdj7tDe3r/exec";
+
+const API =
+"https://script.google.com/macros/s/AKfycbwU_HOvv2dug9RUCgDR0YEIcThel0ej6_1jXADr4eiuNO6u8wewUtBMZ7FUdj7tDe3r/exec";
+
+const GA="G-JYELJLKE7X";
+
 let actors=[];
-const norm=s=>(s||"").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-async function loadData(){
- const st=document.getElementById("status");
- if(API_URL.includes("COLLER_ICI")){
-   st.textContent="API à activer";
-   const h=document.getElementById("help");
-   h.style.display="block";
-   h.innerHTML="<strong>Site prêt.</strong> Colle simplement l'URL Apps Script /exec à la place de https://script.google.com/macros/s/AKfycbwU_HOvv2dug9RUCgDR0YEIcThel0ej6_1jXADr4eiuNO6u8wewUtBMZ7FUdj7tDe3r/exec.";
-   return;
- }
+
+
+/* ======================
+   COOKIES / ANALYTICS
+====================== */
+
+function loadGA(){
+
+ if(window.gaLoaded)return;
+
+ window.gaLoaded=true;
+
+ let s=document.createElement("script");
+
+ s.async=true;
+
+ s.src=
+ "https://www.googletagmanager.com/gtag/js?id="+GA;
+
+ document.head.appendChild(s);
+
+ window.dataLayer=window.dataLayer||[];
+
+ window.gtag=function(){
+  dataLayer.push(arguments);
+ };
+
+ gtag("js",new Date());
+
+ gtag("config",GA);
+
+}
+
+
+function acceptCookies(){
+
+ localStorage.setItem(
+ "recyclCookies",
+ "accepted"
+ );
+
+ document.getElementById("cookie").style.display="none";
+
+ loadGA();
+
+}
+
+
+function refuseCookies(){
+
+ localStorage.setItem(
+ "recyclCookies",
+ "refused"
+ );
+
+ window["ga-disable-"+GA]=true;
+
+ document.getElementById("cookie").style.display="none";
+
+}
+
+
+function cookies(){
+
+ document.getElementById("cookie").style.display="block";
+
+}
+
+
+const consent=
+localStorage.getItem("recyclCookies");
+
+if(consent==="accepted"){
+
+ loadGA();
+
+}else if(consent==="refused"){
+
+ window["ga-disable-"+GA]=true;
+
+}else{
+
+ document.getElementById("cookie").style.display="block";
+
+}
+
+
+/* ======================
+   SECURITE AFFICHAGE
+====================== */
+
+function esc(v){
+
+ return String(v||"")
+
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
+
+}
+
+
+function safeUrl(v){
+
  try{
-   const r=await fetch(API_URL,{cache:"no-store"});
-   const payload=await r.json();
-   actors=(Array.isArray(payload)?payload:(payload.data||[])).filter(a=>(a["Fiche publiable"]||"").toUpperCase()==="OUI");
-   st.textContent=actors.length+" fiches actives";
-   const communes=[...new Set(actors.map(a=>a["Commune normalisée"]||a["Commune"]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"fr"));
-   const sel=document.getElementById("commune");
-   communes.forEach(c=>{const o=document.createElement("option");o.value=c;o.textContent=c;sel.appendChild(o)});
-   render();
- }catch(e){st.textContent="Erreur";document.getElementById("results").innerHTML='<div class="help">Impossible de charger la base.</div>'}
-}
-function matchPublic(a,p){
- if(!p)return true;
- const v=norm(a["Public normalisé"]||a["Public / accès"]);
- if(p==="Particuliers")return v.includes("particulier")||v.includes("grand public");
- if(p==="Professionnels")return v.includes("profession");
- return v.includes("particulier")&&v.includes("profession");
-}
-function render(){
- const q=norm(document.getElementById("q").value);
- const c=document.getElementById("commune").value;
- const p=document.getElementById("public").value;
- const rows=actors.filter(a=>{
-   const search=norm(a["Recherche texte"]||Object.values(a).join(" "));
-   const commune=a["Commune normalisée"]||a["Commune"]||"";
-   return (!q||search.includes(q))&&(!c||commune===c||commune==="Toute la Martinique")&&matchPublic(a,p);
- });
- document.getElementById("meta").textContent=rows.length+" solution(s) trouvée(s)";
- document.getElementById("results").innerHTML=rows.map(a=>`<div class="card">
- <h3>${a["Nom de la structure"]||""}</h3>
- <span class="badge">${a["Catégorie normalisée"]||a["Type d'acteur"]||""}</span>
- <span class="badge">${a["Commune normalisée"]||a["Commune"]||""}</span>
- <p><strong>Activité :</strong> ${a["Activité / rôle"]||""}</p>
- <p><strong>Déchets :</strong> ${a["Déchets / matières"]||""}</p>
- ${a["Téléphone"]?`<a class="btn primary" href="tel:${a["Téléphone"].replace(/[^\d+]/g,"")}">Appeler</a>`:""}
- ${a["Site web"]?`<a class="btn secondary" target="_blank" href="${a["Site web"]}">Site web</a>`:""}
- </div>`).join("")||'<div class="help">Aucun résultat.</div>';
-}
-["q","commune","public"].forEach(id=>document.getElementById(id).addEventListener(id==="q"?"input":"change",render));
-function trackEvent(name, params) {
-  if (typeof gtag === "function") {
-    gtag("event", name, params || {});
+
+  let u=new URL(v);
+
+  if(
+   u.protocol==="https:" ||
+   u.protocol==="http:"
+  ){
+   return u.href;
   }
+
+ }catch(e){}
+
+ return "";
+
 }
 
-document.getElementById("q").addEventListener("change", function() {
-  var valeur = this.value.trim();
 
-  if (valeur !== "") {
-    trackEvent("recherche_dechet", {
-      terme_recherche: valeur
-    });
-  }
-});
+/* ======================
+   BASE ACTEURS
+====================== */
 
-document.getElementById("commune").addEventListener("change", function() {
-  var valeur = this.value;
+async function loadData(){
 
-  if (valeur !== "") {
-    trackEvent("filtre_commune", {
-      commune: valeur
-    });
-  }
-});
-  loadData();
-</script>
-  <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/service-worker.js");
+ try{
+
+  const r=await fetch(
+   API,
+   {cache:"no-store"}
+  );
+
+  const data=await r.json();
+
+  actors=
+  (Array.isArray(data)
+   ? data
+   : data.data||[]
+  )
+  .filter(a=>
+   (a["Fiche publiable"]||"")
+   .toUpperCase()==="OUI"
+  );
+
+
+  const communes=
+  [...new Set(
+   actors
+   .map(a=>
+    a["Commune normalisée"]
+    ||
+    a["Commune"]
+   )
+   .filter(Boolean)
+  )]
+  .sort();
+
+
+  const select=
+  document.getElementById("commune");
+
+
+  communes.forEach(c=>{
+
+   let option=
+   document.createElement("option");
+
+   option.value=c;
+
+   option.textContent=c;
+
+   select.appendChild(option);
+
   });
+
+
+  render();
+
+ }catch(e){
+
+  document.getElementById("results").innerHTML=
+  "<p>Base temporairement indisponible.</p>";
+
+ }
+
 }
-let deferredPrompt;
 
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-});
 
-document.getElementById("installApp").addEventListener("click", async () => {
+/* ======================
+   RECHERCHE
+====================== */
 
-  // iPhone / iPad
-  if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
-    alert("Pour installer Recycl'Matinik : appuie sur Partager dans Safari puis sur « Ajouter à l’écran d’accueil ».");
-    return;
+function normal(v){
+
+ return String(v||"")
+ .toLowerCase()
+ .normalize("NFD")
+ .replace(/[\u0300-\u036f]/g,"");
+
+}
+
+
+function render(){
+
+ const q=
+ normal(
+  document.getElementById("q").value
+ );
+
+ const commune=
+ document.getElementById("commune").value;
+
+ const pub=
+ normal(
+  document.getElementById("public").value
+ );
+
+
+ const rows=
+ actors.filter(a=>{
+
+  const texte=
+  normal(
+   a["Recherche texte"]
+   ||
+   Object.values(a).join(" ")
+  );
+
+
+  const ville=
+  a["Commune normalisée"]
+  ||
+  a["Commune"]
+  ||
+  "";
+
+
+  const publicActeur=
+  normal(
+   a["Public normalisé"]
+   ||
+   a["Public / accès"]
+  );
+
+
+  return(
+   (!q || texte.includes(q))
+   &&
+   (
+    !commune
+    ||
+    ville===commune
+    ||
+    ville==="Toute la Martinique"
+   )
+   &&
+   (
+    !pub
+    ||
+    publicActeur.includes(pub)
+   )
+  );
+
+ });
+
+
+ document.getElementById("meta").textContent=
+ rows.length+
+ " solution(s) trouvée(s)";
+
+
+ document.getElementById("results").innerHTML=
+
+ rows.map(a=>{
+
+  const nom=
+  esc(
+   a["Nom de la structure"]
+  );
+
+  const activite=
+  esc(
+   a["Activité / rôle"]
+  );
+
+  const dechets=
+  esc(
+   a["Déchets / matières"]
+  );
+
+  const commune=
+  esc(
+   a["Commune normalisée"]
+   ||
+   a["Commune"]
+  );
+
+  const site=
+  safeUrl(
+   a["Site web"]
+  );
+
+  const tel=
+  String(
+   a["Téléphone"]||""
+  )
+  .replace(/[^\d+]/g,"");
+
+
+  return`
+
+  <div class="card">
+
+  <h3>${nom}</h3>
+
+  <span class="badge">
+  ${commune}
+  </span>
+
+  <p>
+  <strong>Activité :</strong>
+  ${activite}
+  </p>
+
+  <p>
+  <strong>Déchets :</strong>
+  ${dechets}
+  </p>
+
+  ${
+   tel
+   ?
+   `<a class="btn bleu"
+   href="tel:${esc(tel)}">
+   Appeler
+   </a>`
+   :
+   ""
   }
 
-  // Android / ordinateur compatible
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-  } else {
-    alert("Pour installer Recycl'Matinik, ouvre le menu de ton navigateur puis choisis « Installer l’application » ou « Ajouter à l’écran d’accueil ».");
+  ${
+   site
+   ?
+   `<a class="btn"
+   href="${esc(site)}"
+   target="_blank"
+   rel="noopener noreferrer">
+   Site web
+   </a>`
+   :
+   ""
   }
 
-});
-    document.getElementById("collecteForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+  </div>
 
-  const typeDechet = document.getElementById("typeDechetCollecte").value;
-  const commune = document.getElementById("communeCollecte").value;
-  const quantite = document.getElementById("quantiteCollecte").value;
-  const profil = document.getElementById("profilCollecte").value;
-  const nom = document.getElementById("nomCollecte").value;
-  const telephone = document.getElementById("telephoneCollecte").value;
-  const email = document.getElementById("emailCollecte").value;
-  const message = document.getElementById("messageCollecte").value;
+  `;
 
-  const sujet = "Demande de collecte - Recycl'Matinik";
+ }).join("");
 
-  const corps =
-`Nouvelle demande de collecte via Recycl'Matinik
+}
 
-Type de déchet : ${typeDechet}
-Commune : ${commune}
-Quantité approximative : ${quantite}
+
+/* ======================
+   DEMANDE COLLECTE
+====================== */
+
+document
+.getElementById("collecteForm")
+.addEventListener(
+"submit",
+function(e){
+
+ e.preventDefault();
+
+ if(!this.reportValidity())return;
+
+
+ const dechet=
+ document.getElementById("dechet").value;
+
+ const ville=
+ document.getElementById("ville").value;
+
+ const quantite=
+ document.getElementById("quantite").value;
+
+ const profil=
+ document.getElementById("profil").value;
+
+ const nom=
+ document.getElementById("nom").value;
+
+ const telephone=
+ document.getElementById("telephone").value;
+
+ const email=
+ document.getElementById("email").value;
+
+ const message=
+ document.getElementById("message").value;
+
+
+ const subject=
+ "Demande de collecte - Recycl'Matinik";
+
+
+ const body=
+
+`Nouvelle demande de collecte Recycl'Matinik
+
+Déchet : ${dechet}
+
+Commune : ${ville}
+
+Quantité : ${quantite}
+
 Profil : ${profil}
+
 Nom / Structure : ${nom}
+
 Téléphone : ${telephone}
+
 E-mail : ${email}
 
 Précisions :
 ${message}
 
-Demande transmise via Recycl'Matinik.`;
+Cette demande ne vaut pas confirmation de collecte.`;
 
-  const mailto =
-    "mailto:guysgreen.25@gmail.com"
-    + "?subject=" + encodeURIComponent(sujet)
-    + "&body=" + encodeURIComponent(corps);
 
- trackEvent("collecte_envoyee", {
-  type_dechet: typeDechet,
-  commune: commune,
-  profil: profil,
-  partenaire: "Guys Green"
+ window.location.href=
+
+ "mailto:guysgreen.25@gmail.com?subject="
+ +
+ encodeURIComponent(subject)
+ +
+ "&body="
+ +
+ encodeURIComponent(body);
+
 });
-     window.location.href = mailto;
-});
-  </script>
+
+
+/* ======================
+   INFORMATIONS LEGALES
+====================== */
+
+function showModal(html){
+
+ document.getElementById(
+ "modalContent"
+ ).innerHTML=html;
+
+ document.getElementById(
+ "modalBg"
+ ).style.display="flex";
+
+}
+
+
+function legal(){
+
+ showModal(`
+
+ <h2>Mentions légales</h2>
+
+ <p>
+ <strong>Éditeur :</strong>
+ Guy’s Solution
+ </p>
+
+ <p>
+ Projet Recycl’Matinik
+ </p>
+
+ <p>
+ 146 chemin La Mauny,
+ quartier Sans Pareil,
+ 97215 Rivière-Salée,
+ Martinique.
+ </p>
+
+ <p>
+ Contact :
+ Audrey.goldery.culture3@gmail.com
+ </p>
+
+ <p>
+ <strong>Hébergement :</strong>
+ GitHub Pages – GitHub, Inc.
+ </p>
+
+ <h3>Objet</h3>
+
+ <p>
+ Recycl’Matinik est un service
+ d’information, d’orientation
+ et de mise en relation autour
+ du tri, du recyclage,
+ de la valorisation et de la
+ collecte des déchets en Martinique.
+ </p>
+
+ <p>
+ Les informations affichées
+ doivent être vérifiées auprès
+ des organismes concernés.
+ </p>
+
+ `);
+
+}
+
+
+function privacy(){
+
+ showModal(`
+
+ <h2>
+ Politique de confidentialité
+ </h2>
+
+ <p>
+ Recycl’Matinik traite les
+ informations nécessaires
+ aux demandes initiées
+ par les utilisateurs.
+ </p>
+
+ <h3>Demande de collecte</h3>
+
+ <p>
+ Les informations renseignées
+ peuvent comprendre :
+ nom, structure, téléphone,
+ e-mail, commune, type de déchet
+ et informations relatives
+ à la demande.
+ </p>
+
+ <p>
+ Elles sont utilisées pour
+ permettre le traitement
+ de votre demande.
+ </p>
+
+ <p>
+ Dans la version actuelle,
+ la demande est préparée dans
+ votre propre application e-mail
+ à destination de Guy’s Green.
+ </p>
+
+ <p>
+ Elle n’est réellement envoyée
+ que lorsque vous appuyez
+ sur « Envoyer » dans votre
+ messagerie.
+ </p>
+
+ <h3>Google Analytics</h3>
+
+ <p>
+ La mesure d’audience n’est
+ activée qu’après votre accord.
+ </p>
+
+ <h3>Vos droits</h3>
+
+ <p>
+ Pour exercer vos droits
+ relatifs à vos données :
+ </p>
+
+ <p>
+ Audrey.goldery.culture3@gmail.com
+ </p>
+
+ <p>
+ Vous pouvez également saisir
+ la CNIL.
+ </p>
+
+ `);
+
+}
+
+
+function closeModal(e){
+
+ if(
+  e.target.id==="modalBg"
+ ){
+
+  document.getElementById(
+   "modalBg"
+  ).style.display="none";
+
+ }
+
+}
+
+
+/* ======================
+   PWA
+====================== */
+
+if(
+ "serviceWorker"
+ in navigator
+){
+
+ window.addEventListener(
+ "load",
+ ()=>{
+
+  navigator
+  .serviceWorker
+  .register(
+   "/service-worker.js"
+  )
+  .catch(()=>{});
+
+ });
+
+}
+
+
+/* DEMARRAGE */
+
+loadData();
+
+</script>
+
 </body>
 </html>

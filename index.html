@@ -228,6 +228,9 @@ Trouvez une solution pour donner une seconde vie
 <a href="#collecte" class="btn vert">
 🚛 Demander une collecte
 </a>
+ <button id="installBtn" class="btn install-btn" style="display:none;">
+  📲 Installer Recycl’Matinik
+</button>
 
 </div>
 
@@ -1069,6 +1072,43 @@ if(
 
 }
 
+
+/* DEMARRAGE */
+
+
+ /* INSTALLATION RECYCL'MATINIK */
+
+let deferredPrompt = null;
+const installBtn = document.getElementById("installBtn");
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredPrompt = event;
+
+  if (installBtn) {
+    installBtn.style.display = "inline-block";
+  }
+});
+
+if (installBtn) {
+  installBtn.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+
+    deferredPrompt = null;
+    installBtn.style.display = "none";
+  });
+}
+
+window.addEventListener("appinstalled", () => {
+  deferredPrompt = null;
+
+  if (installBtn) {
+    installBtn.style.display = "none";
+  }
+});
 
 /* DEMARRAGE */
 

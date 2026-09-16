@@ -34,13 +34,25 @@ header{
  border-bottom:1px solid #ddd;
 }
 
-.logo{
- font-size:25px;
- font-weight:bold;
+.site-logo{
+  display:block;
+  width:min(430px,90vw);
+  max-height:110px;
+  height:auto;
+  object-fit:contain;
+  margin:0 auto;
 }
 
-.recycl{color:var(--bleu)}
-.matinik{color:var(--vert)}
+@media(max-width:480px){
+  header{
+    padding:10px;
+  }
+
+  .site-logo{
+    width:min(340px,92vw);
+    max-height:90px;
+  }
+}
 
 .hero{
  padding:45px 20px;
@@ -216,10 +228,11 @@ footer button{
 <body>
 
 <header>
- <div class="logo">
- ♻️
- <span class="recycl">RECYCL’</span><span class="matinik">MATINIK</span>
- </div>
+  <img
+    src="logo-recyclmatinik-horizontal.png"
+    alt="Recycl’Matinik - Le bon acteur pour le bon déchet"
+    class="site-logo"
+  >
 </header>
 
 <div class="hero">
